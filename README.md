@@ -1,5 +1,4 @@
-# lifssa
-Laser Induced Fluorescence Spectroscopy Spectra Analyser
+# Laser Induced Fluorescence Spectroscopy spectra analyser - LIFSsa
 
-# Development
-This software was developed during the course Python applied to spectrosopy
+## Development
+This software was developed during the course Python applied to spectroscopy
