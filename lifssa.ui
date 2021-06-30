@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>LIFSsa v0.2</string>
+   <string>LIFSsa v0.5</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -34,6 +34,21 @@
         </item>
         <item>
          <widget class="QLineEdit" name="spectrapath_le">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -50,6 +65,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="spectrafilter_cb">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Apply filter</string>
         </property>
@@ -57,6 +75,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="spectraarea_cb">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Area</string>
         </property>
@@ -77,6 +98,15 @@
       </item>
       <item>
        <widget class="QPushButton" name="apply_pb">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>Apply</string>
         </property>
@@ -103,6 +133,9 @@
           <property name="text">
            <string>Area:</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
         <item>
@@ -122,6 +155,9 @@
          <widget class="QLabel" name="label_3">
           <property name="text">
            <string>Height:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -150,7 +186,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
