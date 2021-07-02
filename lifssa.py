@@ -17,8 +17,8 @@ class LIFSSA(QtWidgets.QMainWindow):
 		self.gui = uic.loadUi('lifssa.ui')
 		self.gui.show()
 		# Global variables
-		self.matrix = array([None])
-		self.filtered = array([None])
+		self.matrix = array([0])
+		self.filtered = array([0])
 		self.area, self.height = 0, 0
 		# Connects
 		self.connects()
@@ -28,6 +28,16 @@ class LIFSSA(QtWidgets.QMainWindow):
 	def connects(self):
 		self.gui.spectraselect_pb.clicked.connect(self.openfile)
 		self.gui.apply_pb.clicked.connect(self.apply)
+		self.gui.actionAbout.triggered.connect(self.showabout)
+		self.gui.actionQuit.triggered.connect(self.quitapp)
+		self.gui.actionExport.triggered.connect(self.exportdata)
+	
+	def showabout(self):
+		QtWidgets.QMessageBox.about(None, 'About LIFSsa', 'This program was developed during Python classes')
+	
+	def quitapp(self):
+		self.gui.close()
+		self.close()
 		
 	def setup(self):
 		# Configures graphic
@@ -87,6 +97,21 @@ class LIFSSA(QtWidgets.QMainWindow):
 		self.gui.graphic.clear()
 		self.gui.graphic.plot(self.matrix[:, 0], self.filtered, name=name, pen=color)
 	
+	def exportdata(self):
+		if self.matrix.mean() == 0.0 and self.filtered.mean() == 0.0 and self.area == 0 and self.height == 0:
+			QtWidgets.QMessageBox.warning(None, 'Warning', 'There are no data to be exported')
+		else:
+			fd = QtWidgets.QFileDialog.getSaveFileName(None, 'Choose name to save file', directory=str(Path.cwd().joinpath('Data.xlsx')), filter='Excel Files (*.xlsx)')
+			if fd[0] == '':
+				QtWidgets.QMessageBox.warning(None, 'Cancelled', 'Cancelled py the user')
+			else:
+				# User properly choose file to save
+				exit_data = pd.DataFrame(columns=['Wavelength', 'Count', 'Filtered'], data=column_stack((self.matrix, self.filtered)))
+				exit_data['Area'] = [self.area] + [None]*(self.filtered.size-1)
+				exit_data['Height'] = [self.height] + [None]*(self.filtered.size-1)
+				exit_data.to_excel(Path(fd[0]).with_suffix('.xlsx'), index=False)
+				QtWidgets.QMessageBox.information(None, 'Done', 'Data saved!')
+			
 
 # Main starter
 if __name__ == '__main__':
